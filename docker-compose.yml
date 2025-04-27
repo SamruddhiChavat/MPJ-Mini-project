@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://neondb_owner:npg_PUz9eHdR8Scl@ep-sweet-darkness-a1eeey1w-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+      - PGHOST=ep-sweet-darkness-a1eeey1w-pooler.ap-southeast-1.aws.neon.tech
+      - PGUSER=neondb_owner
+      - PGDATABASE=neondb
+      - PGPASSWORD=npg_PUz9eHdR8Scl
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest  # Using the official PostgreSQL image instead of neontech/neon-db
+    environment:
+      - POSTGRES_USER=neondb_owner
+      - POSTGRES_PASSWORD=npg_PUz9eHdR8Scl
+      - POSTGRES_DB=neondb
+    ports:
+      - "5432:5432"

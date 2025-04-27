@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class History extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
-            // Get connection from DatabaseConnection class
+
             Connection connection = DatabaseConnection.getConnection();
 
             if (connection == null) {
@@ -20,8 +20,8 @@ public class History extends HttpServlet {
                 return;
             }
 
-            // Correct the query to use 'link' column instead of 'searchLink'
-            String query = "SELECT keyword, link FROM history"; // Fixed here
+
+            String query = "SELECT keyword, link FROM history";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
